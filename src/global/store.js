@@ -29,14 +29,7 @@ const allState = {
             mall: '4bf58dd8d48988d1fd941735'
         }
     },
-
-    resultFoursquare: {
-        id: '',
-        name: '',
-        address: '',
-        photos: '',
-        rating: ''
-    }
+    listInfo: []
 };
 
 export const store = createStore(allState);
