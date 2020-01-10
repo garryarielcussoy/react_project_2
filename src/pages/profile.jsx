@@ -9,7 +9,7 @@ class Profile extends React.Component{
 
     render(){
         if (this.props.userCredential.isLogin !== true) {
-            return <Redirect to={{ pathname: "/signin" }} />;
+            return <Redirect to={{ pathname: "/login" }} />;
         }
         else { 
             return (
