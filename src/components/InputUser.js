@@ -7,9 +7,11 @@ import {store, actions} from '../global/store'
 import { connect } from "unistore/react";
 
 class InputUser extends React.Component{
-    handleButtonClick = async (cityName) => {
-        await this.props.storeGetCityImage(cityName);
-        this.props.storeGetCityScore(cityName);
+    getScoreAndImage = async () => {
+        console.warn("Check props near", this.props.near)
+        await this.props.storeGetCityImage(this.props.near);
+        this.props.storeGetCityScore(this.props.near);
+        this.props.requestFoursquare(this.props.categoryId);
     }
 
     functionToHandleCategoryChange = async(category) =>{
@@ -20,6 +22,7 @@ class InputUser extends React.Component{
     }
 
     render(){
+        // console.log("Nilai CategoryId XXXX ", this.props.categoryId);
         return (
         <div className='container-fluid'>
             <div className='row'>
@@ -29,20 +32,20 @@ class InputUser extends React.Component{
                         <form className='input-user-form form-inline' onSubmit={this.props.handleOnSubmit}>
                             <div className='form-group input-container'>
                                 <label for='near'></label>
-                                <input type='text' onChange={(e) => this.props.handleOnChange(e)} className='near' id='near' name='near' placeholder='Nama Kota'></input>
+                                <input type='text' onChange={(e) => this.props.handleOnChange1(e)} className='near' id='near' name='near' placeholder='Nama Kota'></input>
                             </div>
                             <div className='form-group input-container'>
-                                <label for='categoryID'></label>
-                                <select onChange={(e) => this.props.handleOnChange(e)} name='categoryID' className='categoryID' id='categoryID'>
-                                    <option value={this.props.fourSquareRequirement.university}>Universitas</option>
-                                    <option value={this.props.fourSquareRequirement.sportFacility}>Tempat Olahraga</option>
-                                    <option value={this.props.fourSquareRequirement.hospital}>Rumah Sakit</option>
-                                    <option value={this.props.fourSquareRequirement.tempatIbadah}>Tempat Ibadah</option>
-                                    <option value={this.props.fourSquareRequirement.mall}>Mall</option>
-                                    <option>Data Statistik</option>
+                                <label for='categoryId'></label>
+                                <select onChange={(e) => this.props.handleOnChange2(e)} name='categoryId' className='categoryId' id='categoryID'>
+                                    <option name={this.props.fourSquareRequirement.university}>Universitas</option>
+                                    <option name={this.props.fourSquareRequirement.sportFacility}>Tempat Olahraga</option>
+                                    <option name={this.props.fourSquareRequirement.hospital}>Rumah Sakit</option>
+                                    <option name={this.props.fourSquareRequirement.tempatIbadah}>Tempat Ibadah</option>
+                                    <option name={this.props.fourSquareRequirement.mall}>Mall</option>
+                                    <option >Data Statistik</option>
                                 </select>
                             </div>
-                            <button className='btn-lg btn-primary search-button' onClick={(e) => this.props.handleInputUser(e)}>Cari</button>
+                            <button className='btn-lg btn-primary search-button' onClick={this.getScoreAndImage}>Cari</button>
                         </form>
                     </div>
                 </div>
@@ -53,4 +56,4 @@ class InputUser extends React.Component{
     }
 }
 
-export default connect("userCredential, fourSquareRequirement, cityNameToSearch", actions)(withRouter(InputUser));
+export default connect("userCredential, fourSquareRequirement, cityNameToSearch, near, categoryID, categoryId", actions)(withRouter(InputUser));

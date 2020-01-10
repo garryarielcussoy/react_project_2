@@ -8,7 +8,10 @@ import {store, actions} from '../global/store'
 import { connect } from "unistore/react";
 
 class Header extends React.Component{
+
+
     render(){
+
         console.warn("CHECK PROPS", this.props.userCredential)
         return (
             <div className='container-fluid'>
@@ -33,7 +36,7 @@ class Header extends React.Component{
                     <div className='col-md-2 col-sm-6 header-log'>
                         { this.props.userCredential.isLogin === true ? 
                             <Link to='/login'><a onClick={() => this.props.handleLogout()} href='' className='login-text'>Logout</a></Link>:
-                            <Link to='/login'><a href='' className='logout-text'>Login</a></Link>
+                            <Link to='/login'><a href=''  className='logout-text'>Login</a></Link>
                         }
                     </div>
                 </div>

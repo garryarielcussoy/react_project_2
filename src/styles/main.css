@@ -71,12 +71,11 @@
     100%  {border: 5px solid rgba(0, 0, 0, 0.1);}
 }
 
-<<<<<<< HEAD
 /* Info Foursquare Component */
 .card-horizontal {
     display: flex;
     flex: 1 1 auto;
-=======
+}
 /* ----- INFO PAGE ----- */
 .input-container{
     padding-left: 10px;
@@ -98,5 +97,4 @@
     margin-top: 200px;
     font-weight: 800;
     text-align: center;
->>>>>>> 7badefb084a7651da1ffc13eff83a9970139543c
 }

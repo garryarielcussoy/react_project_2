@@ -4,10 +4,11 @@ import { connect } from "unistore/react";
 import { actions } from "../global/store";
 import Axios from 'axios';
 
-export class ListFoursquare extends React.Component {
+class ListFourSquare extends React.Component {
     
     render() {
-        
+        console.warn("nilia list info", this.props.listInfo)
+        if(this.props.listInfo.length > 0){
         return (
         <div class="container-fluid">
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
@@ -29,5 +30,11 @@ export class ListFoursquare extends React.Component {
             </div>
         </div>
         );
-    }
-}
+        }
+        else {
+            return(
+                <div></div>
+            )
+        }
+}}
+export default connect("listInfo", actions)(withRouter(ListFourSquare));

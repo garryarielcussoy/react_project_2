@@ -6,22 +6,22 @@ import { store, actions } from "../global/store";
 import { ListFoursquare } from "../components/infoFoursquare"
 
 class FoursquareCategory extends React.Component {
-    requestFoursquare = async (category) => {
-        // binding this
-        const self = store;
-        await Axios
-            .get("https://api.foursquare.com/v2/venues/search?categoryId="+category+"&client_id="
-            +this.props.fourSquareRequirement.clientId+"&client_secret="
-            +this.props.fourSquareRequirement.clientSecret+"&v=20200901"+"&near=malang"+"&limit=5")
-            .then(function(response){
-                self.setState({ listInfo: response.data.response.venues, isLoading: false});
-                console.log(response.data);
-            })
-            .catch(function(error){
-                self.setState({isLoading: false});
-                console.log(error)
-            })
-    }
+    // requestFoursquare = async (category) => {
+    //     // binding this
+    //     const self = store;
+    //     await Axios
+    //         .get("https://api.foursquare.com/v2/venues/search?categoryId="+category+"&client_id="
+    //         +this.props.fourSquareRequirement.clientId+"&client_secret="
+    //         +this.props.fourSquareRequirement.clientSecret+"&v=20200901"+"&near=malang"+"&limit=5")
+    //         .then(function(response){
+    //             self.setState({ listInfo: response.data.response.venues, isLoading: false});
+    //             console.log(response.data);
+    //         })
+    //         .catch(function(error){
+    //             self.setState({isLoading: false});
+    //             console.log(error)
+    //         })
+    // }
 
     componentDidMount = async () => {
         await this.requestFoursquare("4f4528bc4b90abdf24c9de85");
