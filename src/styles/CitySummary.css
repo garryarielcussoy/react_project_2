@@ -1,0 +1,12 @@
+.city-photo{
+    padding: 10px auto;
+}
+
+
+.city-photo img{
+    height: 100%;
+    width: 100%; 
+    border: solid 1px #C3C3C343;
+    border-radius: 10px;
+    box-shadow: 0px 7px 15px #C3C3C343;
+}

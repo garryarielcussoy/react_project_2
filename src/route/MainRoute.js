@@ -2,7 +2,7 @@ import React from 'react'
 import {Link, BrowserRouter, Switch, Route} from 'react-router-dom'
 
 import {Provider} from 'unistore/react'
-import {store, actions} from '../global/store'
+import {store, actions} from '../global/store_bimon'
 
 import Home from '../pages/Home'
 import Profile from '../pages/profile'

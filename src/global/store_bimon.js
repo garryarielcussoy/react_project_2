@@ -11,6 +11,13 @@ const allState = {
         profileImage: '',
         isLogin: false,
         isRemembered: false
+    },
+    resultTeleportScore: {
+        categories:'',
+        summary:''
+    },
+    resultTeleportPhotos:{
+        photos: []
     }
 };
 
@@ -61,6 +68,34 @@ export const actions = store => ({
         //     console.log(error);
         // });
     },
+
+    storeGetCityScore : async (state, cityName) =>{
+        await axios
+        .get(`https://api.teleport.org/api/urban_areas/slug:${cityName.toLowerCase()}/scores/`)
+        .then(function (response) {
+            if (response.data.hasOwnProperty("categories")) {
+
+                store.setState({resultTeleportScore: response.data});
+            }
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+    },
+
+    storeGetCityImage : async (state, cityName) =>{
+        await axios
+        .get(`https://api.teleport.org/api/urban_areas/slug:${cityName.toLowerCase()}/images/`)
+        .then(function (response) {
+            if (response.data.hasOwnProperty("photos")) {
+                store.setState({resultTeleportPhotos: response.data});
+                // console.log("fuct storeGetCityImage berhasil DIJALANKAN");
+            }
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+    }
 
 });
 
