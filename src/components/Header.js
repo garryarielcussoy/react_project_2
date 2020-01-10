@@ -22,7 +22,7 @@ class Header extends React.Component{
                         <Link to='/info'><img src={infoKotaLogo} className='header-logo'/></Link>
                         }
                     </div>
-                    <div className='col-md-9 col-sm-12'>
+                    <div className='col-md-9 col-sm-6'>
                         {this.props.userCredential.isLogin === true ? 
                             <ul className='appear-after-login'>
                                 <li className='header-home'>
