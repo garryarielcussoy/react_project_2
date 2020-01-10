@@ -70,3 +70,33 @@
     50%  {border: 5px solid rgba(0, 0, 0, 1);}
     100%  {border: 5px solid rgba(0, 0, 0, 0.1);}
 }
+
+<<<<<<< HEAD
+/* Info Foursquare Component */
+.card-horizontal {
+    display: flex;
+    flex: 1 1 auto;
+=======
+/* ----- INFO PAGE ----- */
+.input-container{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.input-user-form{
+    text-align: center;
+    margin-top: 30px;
+}
+
+.search-button{
+    margin-left: 10px;
+    line-height: 0.5;
+}
+
+/* ----- NOT FOUND PAGE ----- */
+.not-found-page{
+    margin-top: 200px;
+    font-weight: 800;
+    text-align: center;
+>>>>>>> 7badefb084a7651da1ffc13eff83a9970139543c
+}

@@ -14,13 +14,18 @@ class Header extends React.Component{
             <div className='container-fluid'>
                 <div className='row header'>
                     <div className='col-md-1 col-sm-12 header-info-kota'>
-                        <Link to='/'><img src={infoKotaLogo} className='header-logo'/></Link>
+                        { this.props.userCredential.isLogin === false ?
+                        <Link to='/'><img src={infoKotaLogo} className='header-logo'/></Link>:
+                        <Link to='/info'><img src={infoKotaLogo} className='header-logo'/></Link>
+                        }
                     </div>
                     <div className='col-md-9 col-sm-12'>
                         {this.props.userCredential.isLogin === true ? 
                             <ul className='appear-after-login'>
-                                <li className='header-home'><Link to='/'><a>Home</a></Link></li>
-                                <li className='header-profile'><Link to='/'><a>Profile</a></Link></li>
+                                <li className='header-home'>
+                                    { this.props.userCredential.isLogin === false ? <Link to='/'><a>Home</a></Link> : <Link to='/info'><a>Home</a></Link>}
+                                </li>  
+                                <li className='header-profile'><Link to='/profile'><a>Profile</a></Link></li>
                             </ul>:
                             <div></div>
                         }

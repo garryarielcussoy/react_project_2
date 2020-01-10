@@ -12,8 +12,14 @@ const allState = {
         isLogin: false,
         isRemembered: false
     },
+    cityNameToSearch:'',
+    categoryToSearch:'',
     resultTeleportScore: {
-
+        categories:'',
+        summary:''
+    },
+    resultTeleportPhotos:{
+        photos: []
     },
     fourSquareRequirement: {
         clientId: 'SVNLQVD0ST2L1E5JE5PU0S0Z2MIVPOI15DEEWFB41EDRXBTZ',
@@ -36,7 +42,12 @@ const allState = {
         address: '',
         photos: '',
         rating: ''
-    }
+    },
+
+    near: '',
+    categoryId: '',
+    username: '',
+    password: ''
 };
 
 export const store = createStore(allState);
@@ -49,19 +60,60 @@ export const actions = store => ({
         store.setState({userCredential: {...store.state, isRemembered: el.target.checked}});
     },
 
-    storeHandleLogin: async(state, isRemembered) => {
-        store.setState({
-            userCredential: {
-                userName: "bimon", 
-                email: "bimon@alterra.id",
-                apiKey: "1234567890",
-                isLogin: true,
-                isRemembered: isRemembered
-            }
-        })
+    handleLogout: (state, event) => {
+        alert("Sukses Logout")
+        store.setState({userCredential: {...store.state, isLogin: false}})
     },
 
-    handleLogout: (state, event) => {
-        store.setState({userCredential: {...store.state, isLogin: false}})
+    handleInputUser: (state, event) => {
+        console.warn("CHECK INPUT USER")
+        const self = this
+        const categoryId = this.props.categoryId
+        const near = this.props.near
+        console.warn("INPUT USER CONST", categoryId, near)
+    },
+
+    handleOnSubmit: (state, event) => {
+        event.preventDefault()
+        console.warn("CHECK ON SUBMIT", event.target)
+    },
+
+    handleOnChange: (state, event) => {
+        console.warn("CHECK CHANGE", event.target.value)
+        store.setState({[event.target.name]: event.target.value})
+    },
+
+    storeGetCityScore: async (state, cityName) => {
+        await axios
+        .get(`https://api.teleport.org/api/urban_areas/slug:${cityName.toLowerCase()}/scores/`)
+        .then(function(response){
+            if (response.data.hasOwnProperty('categories')){
+                store.setState({resultTeleportScore: response.data});
+            }
+        })
+        .catch(function(error){
+            console.log(error);
+        });
+    },
+
+    storeGetCityImage: async (state, cityName) => {
+        await axios
+        .get(`https://api.teleport.org/api/urban_areas/slug:${cityName.toLowerCase()}/images/`)
+        .then(function(response){
+            if (response.data.hasOwnProperty('photos')){
+                store.setState({resultTeleportPhotos: response.data});
+            }
+        })
+        .catch(function(error){
+            console.log(error);
+        });
+    },
+    storeSetState: async (state, categoryName) =>{
+        if (categoryName!==''){
+            await store.setState({categoryToSearch: categoryName});
+        }
     }
+
+
 })
+
